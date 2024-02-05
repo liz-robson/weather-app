@@ -92,6 +92,16 @@ const firstData = data?.list[0];
         )
       )
     ];
+
+    // Filtering data to get the first entry after 6am for each unique date
+    const firstDataForEachDay = uniqueDates.map((date) => {
+      return data?.list.find(
+        (entry) => {
+          const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
+          const entryTime = new Date(entry.dt * 1000).getHours();
+          return entryDate === date && entryTime >= 6;
+        });
+    });
   
     if (isLoading) return (
     <div className="flex items-center min-h-screen justify-center">
@@ -167,7 +177,25 @@ const firstData = data?.list[0];
                  {/** 7 Day Forecast */}
       <section className="flex w-full flex-col gap-4">
 <p className="text-2xl">7 Day Forecast</p>
-<ForecastWeather />
+{firstDataForEachDay.map((d, i) => (
+<ForecastWeather 
+  key={i}
+  description={d?.weather[0].description ?? ""}
+  weatherIcon={d?.weather[0].icon ?? ""}
+  date={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
+  day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
+  feelsLike={d?.main.feels_like ?? 0}
+  temp={d?.main.temp ?? 0}
+  temp_max={d?.main.temp_max ?? 0}
+  temp_min={d?.main.temp_min ?? 0}
+  airPressure={`${d?.main.pressure} hPa`}
+  humidity={`${d?.main.humidity}%`}
+  sunrise={format(fromUnixTime(data?.city.sunrise ?? 0), "h:mm a")}
+  sunset={format(fromUnixTime(data?.city.sunset ?? 0), "h:mm a")}
+  visibility={convertMetresToKilometres(d?.visibility ?? 10000)}
+  windSpeed={convertWindSpeed(d?.wind.speed ?? 0)}
+/>
+))}
       </section>
     </main>
    </div>
