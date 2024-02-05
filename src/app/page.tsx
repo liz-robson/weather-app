@@ -2,6 +2,8 @@
 import Navbar from "../components/Navbar";
 import { useQuery } from "react-query";
 import axios from "axios";
+import { format, parseISO } from 'date-fns';
+import Container from '../components/Container';
 
 
 interface WeatherData {
@@ -94,8 +96,10 @@ const firstData = data?.list[0];
       <div>
         <h2 className="flex gap-1 text-2xl items-end"></h2>
         <p>{format(parseISO(firstData?.dt_txt ?? "" ), "EEEE")}</p>
+        <p>{format(parseISO(firstData?.dt_txt ?? "" ), "dd/MM/yyyy")}</p>
         <div></div>
       </div>
+      <Container className="gap-10 px-6 items-center"/>
       <section></section>
     </main>
    </div>
