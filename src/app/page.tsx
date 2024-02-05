@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { format, parseISO } from 'date-fns';
 import Container from '../components/Container';
+import convertKelvinToCelsius from '../utils/convertKelvintoCelsius'
 
 
 interface WeatherData {
@@ -76,7 +77,7 @@ export default function Home() {
 
 const firstData = data?.list[0];
 
-    console.log("data", data);
+    console.log("data", firstData);
 
 
 
@@ -87,20 +88,31 @@ const firstData = data?.list[0];
     </div>
     );
 
-
   return (
    <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
     <Navbar />
     <main className="px-3 max-w-7xl mx-auto flex flex-col gap-9 w-full pb-10 pt-4">
-      <section></section>
-      <div>
-        <h2 className="flex gap-1 text-2xl items-end"></h2>
+      <section className="space-y-4">
+      <div className="space-y-2">
+        <h2 className="flex gap-1 text-2xl items-end">
         <p>{format(parseISO(firstData?.dt_txt ?? "" ), "EEEE")}</p>
         <p>{format(parseISO(firstData?.dt_txt ?? "" ), "dd/MM/yyyy")}</p>
-        <div></div>
+        </h2>
       </div>
-      <Container className="gap-10 px-6 items-center"/>
-      <section></section>
+      <Container className="gap-10 px-6 items-center">
+      <div className="flex flex-col px-4">
+        <span className="text-5xl">
+        {convertKelvinToCelsius(firstData?.main.temp ?? 0)}°
+        </span>
+        <p className="text-xs space-x-1 white-nowrap"></p>
+        <p className="text-xs space-x-2">
+          <span>
+            Feels likes {convertKelvinToCelsius(firstData?.main.feels_like ?? 0)}°
+          </span>
+        </p>
+        </div>
+      </Container>
+      </section>
     </main>
    </div>
   );
