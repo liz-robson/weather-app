@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 
-// http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=d3a7ef82fb67b38f0ad7c0437307e653&cnt=56
+
 
 interface WeatherData {
   cod: string;
