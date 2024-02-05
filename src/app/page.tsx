@@ -66,20 +66,38 @@ interface City {
 
 export default function Home() {
 
-  
 
   const { isLoading, error, data } = useQuery<WeatherData>('repoData', async () => {
     const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`);
     return data;
 });
 
-    console.log(data)
+const firstData = data?.list[0];
+
+    console.log("data", data);
+
+
 
   
-    if (isLoading) return 'Loading...'
+    if (isLoading) return (
+    <div className="flex items-center min-h-screen justify-center">
+    <p className="animate-bounce">Loading...</p>
+    </div>
+    );
+
+
   return (
    <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
     <Navbar />
+    <main className="px-3 max-w-7xl mx-auto flex flex-col gap-9 w-full pb-10 pt-4">
+      <section></section>
+      <div>
+        <h2 className="flex gap-1 text-2xl items-end"></h2>
+        <p>{format(parseISO(firstData?.dt_txt ?? "" ), "EEEE")}</p>
+        <div></div>
+      </div>
+      <section></section>
+    </main>
    </div>
   );
 }
