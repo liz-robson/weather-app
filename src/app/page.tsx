@@ -164,8 +164,8 @@ const firstData = data?.list[0];
       <Container className="bg-yellow-300/80 px-6 gap-4 justify-between overflow-x-auto">
         <WeatherDetails 
         visibility={convertMetresToKilometres(firstData?.visibility ?? 10000)}
-        airPressure={'${firstData?.main.pressure} hPa'}
-        humidity={'${firstData?.main.humidity}%'}
+        airPressure={`${firstData?.main.pressure} hPa`}
+        humidity={`${firstData?.main.humidity}%`}
         windSpeed={convertWindSpeed(firstData?.wind.speed ?? 0)}
         sunrise={format(fromUnixTime(data?.city.sunrise ?? 0), "h:mm a")}
         sunset={format(fromUnixTime(data?.city.sunset ?? 0), "h:mm a")}
