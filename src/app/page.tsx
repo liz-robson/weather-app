@@ -10,6 +10,7 @@ import getDayOrNightIcon from '../utils/getDayOrNightIcon';
 import WeatherDetails from '../components/WeatherDetails';
 import convertMetresToKilometres from "@/utils/convertMetersToKilometres";
 import { convertWindSpeed } from "@/utils/convertWindSpeed";
+import ForecastWeather from "@/components/ForecastWeather";
  
 
 interface WeatherData {
@@ -84,8 +85,13 @@ const firstData = data?.list[0];
 
     console.log("data", firstData);
 
-
-
+    const uniqueDates = [
+      ...new Set(
+        data?.list.map(
+          (entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]
+        )
+      )
+    ];
   
     if (isLoading) return (
     <div className="flex items-center min-h-screen justify-center">
@@ -161,6 +167,7 @@ const firstData = data?.list[0];
                  {/** 7 Day Forecast */}
       <section className="flex w-full flex-col gap-4">
 <p className="text-2xl">7 Day Forecast</p>
+<ForecastWeather />
       </section>
     </main>
    </div>
