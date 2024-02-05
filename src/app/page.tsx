@@ -7,6 +7,7 @@ import Container from '../components/Container';
 import convertKelvinToCelsius from '../utils/convertKelvintoCelsius';
 import WeatherIcon from '../components/WeatherIcon';
 import getDayOrNightIcon from '../utils/getDayOrNightIcon';
+import WeatherDetails from '../components/WeatherDetails';
 
 
 interface WeatherData {
@@ -143,6 +144,7 @@ const firstData = data?.list[0];
       </Container>
                   {/** Right */}
       <Container className="bg-yellow-300/80 px-6 gap-4 justify-between overflow-x-auto">
+        <WeatherDetails airPressure={}/>
         </Container>
 
             </div>
