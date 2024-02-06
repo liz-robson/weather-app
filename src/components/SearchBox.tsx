@@ -3,13 +3,7 @@
 import { cn } from "@/utils/cn";
 import React from "react";
 import { IoSearch } from "react-icons/io5";
-
-type Props = {
-  className?: string;
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
-};
+import { Props } from "../../types/types";
 
 export default function SearchBox(props: Props) {
   return (
