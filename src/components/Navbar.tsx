@@ -73,11 +73,12 @@ return (
                 onSubmit={handleSubmitSearch}
                 onChange={(e)=> handleInputChange(e.target.value)} /> 
                 <SuggestionBox 
-                error={error}
-                handleSuggestionClick={handleSuggestionClick}
-                suggestions={suggestions}
-                showSuggestions={showSuggestions}
-                />
+                {...{
+                  showSuggestions,
+                  suggestions,
+                  handleSuggestionClick,
+                  error
+                }}/>
             </div>
         </section>
     </div>
