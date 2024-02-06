@@ -13,7 +13,7 @@ import { convertWindSpeed } from "@/utils/convertWindSpeed";
 import ForecastWeather from "@/components/ForecastWeather";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
-import { placeAtom } from "@/app/atom";
+import { placeAtom , loadingCityAtom } from "@/app/atom";
  
 
 interface WeatherData {
@@ -79,14 +79,14 @@ interface City {
 export default function Home() {
 
   const [place, setPlace] = useAtom(placeAtom);
-  // const [loadingCity] = useAtom(loadingCityAtom);
+  const [loadingCity] = useAtom(loadingCityAtom);
 
   const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
 
   const { isLoading, error, data , refetch } = useQuery<WeatherData>(
     'repoData', 
     async () => {
-    const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q={place}&appid=${API_KEY}&cnt=56`
+    const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=dorking&appid=${API_KEY}&cnt=56`
     );
     return data;
 }

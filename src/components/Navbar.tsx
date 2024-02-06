@@ -7,7 +7,7 @@ import { MdMyLocation } from "react-icons/md";
 import SearchBox from "./SearchBox";
 import { useState } from "react";
 import axios from "axios";
-import { placeAtom } from "@/app/atom";
+import { placeAtom , loadingCityAtom } from "@/app/atom";
 import { useAtom } from "jotai";
 
 type Props = { location?: string };
@@ -21,7 +21,7 @@ export default function Navbar({ location }: Props) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [place, setPlace] = useAtom(placeAtom);
-  // const [_, setLoadingCity] = useAtom(loadingCityAtom);
+  const [_, setLoadingCity] = useAtom(loadingCityAtom);
 
   async function handleInputChange(value: string) {
     setCity(value);
@@ -51,15 +51,15 @@ export default function Navbar({ location }: Props) {
   }
 
   function handleSubmitSearch(e: React.FormEvent<HTMLFormElement>) {
-    // setLoadingCity(true);
+    setLoadingCity(true);
     e.preventDefault();
     if (suggestions.length == 0) {
       setError("Location not found");
-      // setLoadingCity(false);
+      setLoadingCity(false);
     } else {
       setError("");
       setTimeout(() => {
-        // setLoadingCity(false);
+        setLoadingCity(false);
         setPlace(city);
         setShowSuggestions(false);
       }, 500);
@@ -71,16 +71,16 @@ export default function Navbar({ location }: Props) {
       navigator.geolocation.getCurrentPosition(async (postiion) => {
         const { latitude, longitude } = postiion.coords;
         try {
-          // setLoadingCity(true);
+          setLoadingCity(true);
           const response = await axios.get(
             `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
           );
           setTimeout(() => {
-            // setLoadingCity(false);
+            setLoadingCity(false);
             setPlace(response.data.name);
           }, 500);
         } catch (error) {
-          // setLoadingCity(false);
+          setLoadingCity(false);
         }
       });
     }
