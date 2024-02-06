@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@testing-library/react": "^14.2.1",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
     "date-fns": "^2.30.0",
@@ -20,6 +21,7 @@
     "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
