@@ -8,10 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'green' : '#264653',
+        'yellow' : '#E9C46A',
+        'orange' : '#F4A261'
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      fontFamily: {
+        Lato: ["Lato", "sans-serif"],
+        OpenSans: ["Open Sans", "sans-serif"],
       },
     },
   },

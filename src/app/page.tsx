@@ -72,7 +72,7 @@ export default function Home() {
       </div>
     );
   return (
-    <div className="flex flex-col gap-4 bg-gray-100 min-h-screen ">
+    <div className="flex flex-col gap-4 min-h-screen bg-green ">
       <Navbar location={data?.city.name} />
       <main className="px-3 max-w-7xl mx-auto flex flex-col gap-9  w-full  pb-10 pt-4 ">
         {/* today data  */}
@@ -82,13 +82,13 @@ export default function Home() {
           <>
             <section className="space-y-4 ">
               <div className="space-y-2">
-                <h2 className="flex gap-1 text-2xl  items-end ">
+                <h2 className="flex gap-4 text-3xl text-stone-200 font-OpenSans items-start pt-10">
                   <p>{format(parseISO(firstData?.dt_txt ?? ""), "EEEE")}</p>
-                  <p className="text-lg">
+                  <p className="text-3xl pb-4 text-white">
                     {format(parseISO(firstData?.dt_txt ?? ""), "dd/MM/yyyy")}
                   </p>
                 </h2>
-                <Container className=" gap-10 px-6 items-center">
+                <Container className=" gap-10 px-6 items-center font-OpenSans">
                   {/* temprature */}
                   <div className=" flex flex-col px-4 ">
                     <span className="text-5xl">
@@ -111,9 +111,9 @@ export default function Home() {
                     {data?.list.map((d, i) => (
                       <div
                         key={i}
-                        className="flex flex-col justify-between gap-2 items-center text-xs font-semibold "
+                        className="flex flex-col justify-between gap-2 items-center text-xs font-semibold"
                       >
-                        <p className="whitespace-nowrap">
+                        <p className="whitespace-nowrap pt-8">
                           {format(parseISO(d.dt_txt), "h:mm a")}
                         </p>
 
@@ -124,7 +124,7 @@ export default function Home() {
                             d.dt_txt
                           )}
                         />
-                        <p>{convertKelvinToCelsius(d?.main.temp ?? 0)}°</p>
+                        <p className='pb-8'>{convertKelvinToCelsius(d?.main.temp ?? 0)}°</p>
                       </div>
                     ))}
                   </div>
@@ -143,7 +143,7 @@ export default function Home() {
                     )}
                   />
                 </Container>
-                <Container className="bg-yellow-300/80  px-6 gap-4 justify-between overflow-x-auto">
+                <Container className="bg-stone-200 border-stone-200 px-6 gap-4 justify-between overflow-x-auto">
                   <WeatherDetails
                     visibility={convertMetresToKilometres(
                       firstData?.visibility ?? 10000
@@ -167,7 +167,7 @@ export default function Home() {
 
             {/* 7 day forcast data  */}
             <section className="flex w-full flex-col gap-4  ">
-              <p className="text-2xl">7 Day Forecast</p>
+              <p className="text-3xl text-stone-200 pt-10">7 Day Forecast</p>
               {firstDataForEachDate.map((d, i) => (
                 <ForecastWeatherDetail
                   key={i}

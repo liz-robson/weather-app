@@ -122,21 +122,21 @@ function SuggestionBox({
 
   return (
     <>
-      <nav className="shadow-sm  sticky top-0 left-0 z-50 bg-white">
+      <nav className="shadow-sm  sticky top-0 left-0 z-50 bg-green pt-10">
         <div className="h-[80px]     w-full    flex   justify-between items-center  max-w-7xl px-3 mx-auto">
           <div className="flex items-center justify-center gap-2  ">
-            <h2 className="text-gray-500 text-3xl">Weather</h2>
-            <MdWbSunny className="text-3xl mt-1 text-yellow-300" />
+            <h2 className="text-stone-200 text-5xl font-Lato">WEATHER</h2>
+            <MdWbSunny className="text-3xl mt-1 text-yellow" />
           </div>
           {/*  */}
           <section className="flex gap-2 items-center">
             <MdMyLocation
               title="Your Current Location"
               onClick={handleCurrentLocation}
-              className="text-2xl  text-gray-400 hover:opacity-80 cursor-pointer"
+              className="text-3xl text-white-400 hover:opacity-80 cursor-pointer"
             />
             <MdOutlineLocationOn className="text-3xl" />
-            <p className="text-slate-900/80 text-sm"> {location} </p>
+            <p className="text-stone-200 text-m"> {location} </p>
             <div className="relative hidden md:flex">
               {/* SearchBox */}
 
